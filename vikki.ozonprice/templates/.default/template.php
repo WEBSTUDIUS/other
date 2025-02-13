@@ -29,7 +29,11 @@ try {
                     </div>
                 </div>";
         } else {
-            echo '';
+            echo "<div class='shadowed-block' id='ozonPrice' style='padding:10px;margin-bottom:10px;'>
+                    <div class='text-center' id='$id' sku='$sku'>
+                        на <img src='/upload/ozon_logo.png'  alt='buy on ozon' width='auto' height='32' style='margin: auto 7px'> дороже
+                    </div>
+                </div>";
         }
 
     }
