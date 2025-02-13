@@ -13,6 +13,7 @@ try {
         $id = $ozonItem['id'];
         $sku = $ozonItem['sources'][0]['sku'];
         $minPrice = $ozonItem['price_indexes']['ozon_index_data']['minimal_price'] ?: $ozonItem['min_price'];
+        if(!$minPrice) $minPrice = $ozonItem['marketing_price'];
         $minPriceFormatted = number_format((float)$minPrice, 0, '.', ' ');
 
         if(!isset($arParams['PRODUCT_PRICE']) || ($arParams['PRODUCT_PRICE'] && $arParams['PRODUCT_PRICE'] >= $minPrice)) {
