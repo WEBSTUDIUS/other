@@ -1,0 +1,1 @@
+DROP TABLE `wb_api_logs`;

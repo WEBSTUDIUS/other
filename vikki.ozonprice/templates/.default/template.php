@@ -12,15 +12,17 @@ try {
         $ozonItem = $arResult['RESULT']['items'][0];
         $id = $ozonItem['id'];
         $sku = $ozonItem['sources'][0]['sku'];
-        $minPrice = $ozonItem['price_indexes']['ozon_index_data']['minimal_price'] ?: $ozonItem['min_price'];
-        if(!$minPrice) $minPrice = $ozonItem['marketing_price'];
+//        $minPrice = $ozonItem['price_indexes']['ozon_index_data']['minimal_price'] ?: $ozonItem['min_price'];
+//        if(!$minPrice) $minPrice = $ozonItem['marketing_price'];
+        $minPrice = $ozonItem['marketing_price'];
         $minPriceFormatted = number_format((float)$minPrice, 0, '.', ' ');
 
-        if(!isset($arParams['PRODUCT_PRICE']) || ($arParams['PRODUCT_PRICE'] && $arParams['PRODUCT_PRICE'] >= $minPrice)) {
+//        if(!isset($arParams['PRODUCT_PRICE']) || ($arParams['PRODUCT_PRICE'] && $arParams['PRODUCT_PRICE'] >= $minPrice)) {
+        if($minPrice)
             echo "<div class='shadowed-block' id='ozonPrice' style='padding:10px;margin-bottom:10px;'>
                     <div class='text-center' id='$id' sku='$sku'>
                         <div class='alert alert-success' style='text-align:center;margin-bottom: 10px;'>
-                            <span>с Ozon Картой:</span>
+                            <span>на Ozon:</span>
                             <span style='font-weight:bold;'>{$minPriceFormatted} руб.</span>
                         </div>      
                         <a href='https://www.ozon.ru/product/$curPage-{$ozonItem['sources'][0]['sku']}' class='btn btn-default' target='_blank' style='padding: 5px 20px;'>
@@ -28,13 +30,13 @@ try {
                         </a>
                     </div>
                 </div>";
-        } else {
-            echo "<div class='shadowed-block' id='ozonPrice' style='padding:10px;margin-bottom:10px;'>
-                    <div class='text-center' id='$id' sku='$sku'>
-                        на <img src='/upload/ozon_logo.png'  alt='buy on ozon' width='auto' height='32' style='margin: auto 7px'> дороже
-                    </div>
-                </div>";
-        }
+//        } else {
+//            echo "<div class='shadowed-block' id='ozonPrice' style='padding:10px;margin-bottom:10px;'>
+//                    <div class='text-center' id='$id' sku='$sku'>
+//                        на <img src='/upload/ozon_logo.png'  alt='buy on ozon' width='auto' height='32' style='margin: auto 7px'> дороже
+//                    </div>
+//                </div>";
+//        }
 
     }
 } catch (\Throwable $e) {
